@@ -45,14 +45,10 @@ unsigned long getMin_TIME(unsigned long time[] , bool visited[])
         {
             min_value = time[i] ;
             key = i ;
-            //cout << "min_value : " << min_value << " ";
-            //cout << "key : " << key << endl;
         }
         
     }
-    
-    //cout << "min_value : " << min_value << " ";
-    //cout << "key : " << key << endl;
+
     return key ;
 }
 
@@ -99,33 +95,23 @@ void dijkstra_time(unsigned long start ,unsigned long num, unsigned long end)
             }
         }
     }
-    /*for(int i=0;i<place_num;i++)
-    {
-        for(int j=0;j<place_num;j++)
-        {
-            cout << current_TT[i][j] << " ";
-        }
-        cout << endl;
-    }*/
     unsigned long par[100];
     unsigned long time[100];
     unsigned long score[100];
     bool visited[100] ={0};
     fill(time,time+place_num,LLONG_MAX);
-    //cout << "there" << endl;
+   
 
     time[start]=0;
     par[start]=-1;
     score[start]=vertex[start].PS;
-    //cout << score[start];
+
     
     for(int g=0;g<num-1;g++)
     {
         unsigned long k = getMin_TIME(time,visited);
         visited[k] = true;
-        //cout <<"qoq" << score[k] << endl;
-        //cout << "visited[1]" <<  visited[1];
-        //cout << "visited[2]" <<  visited[2];
+       
         for(int v=0;v<place_num;v++)
         {
             //cout << v;
@@ -140,18 +126,13 @@ void dijkstra_time(unsigned long start ,unsigned long num, unsigned long end)
             }
             else if(!visited[v] && (time[k]+current_TT[k][v])==time[v] && current_TT[k][v]!=LLONG_MAX)
             {
-                //cout << "yes" << endl;
-                //cout << v << endl;
-                //cout << score[k] << endl;
-                //cout << score[v] << endl;
+                
                 if(score[k]+vertex[v].PS>score[v])
                 {
                     par[v] = k ;
                     time[v] = time[k] + current_TT[k][v];
                     score[v] = score[k] + vertex[v].PS;
-                    //cout << v << endl;
-                    //cout << "dist[v] : " << dist[v] << endl;
-                    //cout << "score[v] : " << score[v] << endl;
+                   
                 }
                 else if(score[k]+vertex[v].PS==score[v])
                 {
@@ -171,14 +152,7 @@ void dijkstra_time(unsigned long start ,unsigned long num, unsigned long end)
                         sorted2.push(temp2);
                         temp2 = par[temp2];
                     }
-                    /*sorted1.pop();
-                    sorted2.pop();
-                    if(sorted1.top()>sorted2.top())
-                    {
-                        par[v] = k ;
-                        dist[v] = dist[k] + current_TT[k][v];
-                        score[v] = score[k] + vertex[v].PS;
-                    }*/
+                    
                     do
                     {
                         sorted1.pop();
@@ -262,14 +236,7 @@ void dijkstra_flow(unsigned long start,unsigned long num,unsigned long end)
             }
         }
     }
-    /*for(int i=0;i<place_num;i++)
-    {
-        for(int j=0;j<place_num;j++)
-        {
-            cout << current_TL[i][j] << " ";
-        }
-        cout << endl;
-    }*/
+    
     unsigned long par[100];
     double flow[100];
     bool visited[100] ={0};
